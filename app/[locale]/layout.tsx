@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import "@/public/styles/globals.scss";
+import "@/public/styles/globals.css";
 import { charisSIL, inter } from "@/shared/fonts";
 import { cn } from "@/shared/utils/cn";
+import { NextIntlClientProvider } from "next-intl";
+import { Navbar } from "@/widgets/common/Navbar";
 
 export const metadata: Metadata = {
   title: "Latin Russian Corpus",
@@ -15,7 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("antialiased", charisSIL.variable, inter.variable)}>{children}</body>
+      <NextIntlClientProvider>
+        <body className={cn("antialiased", charisSIL.variable, inter.variable)}>
+          {children}
+          <Navbar />
+        </body>
+      </NextIntlClientProvider>
     </html>
   );
 }

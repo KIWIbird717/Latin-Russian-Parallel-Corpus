@@ -73,4 +73,9 @@
 body {
   background: var(--background-100);
   color: var(--text-500);
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+  zoom: 1;
 }

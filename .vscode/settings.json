@@ -1,4 +1,13 @@
 {
+  // spell checker
   "cSpell.words": ["charis"],
-  "tailwindCSS.experimental.configFile": "public/styles/globals.css"
+
+  // tailwind
+  "tailwindCSS.experimental.configFile": "public/styles/globals.css",
+
+  // i18n
+  "i18n-ally.localesPaths": ["shared/i18n/translations"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.sourceLanguage": "ru",
+  "i18n-ally.displayLanguage": "ru",
 }
