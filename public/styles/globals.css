@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --background-300: hsl(0deg 100% 89.61%);
+  --background-200: hsl(0deg 30% 97%);
+  --background-100: hsl(0deg 100% 99.61%);
+  --text-500: hsl(18deg 17.86% 10.98%);
+  --text-400: hsl(15.79deg 17.76% 20.98%);
+  --text-300: hsl(17.14deg 17.72% 30.98%);
+  --text-200: hsl(17.14deg 8% 60%);
+  --text-100: hsl(17.14deg 18% 94%);
+  --primary-300: hsl(215.48deg 37.96% 51.96%);
+  --primary-200: hsl(215.68deg 38.14% 61.96%);
+  --primary-100: hsl(214.91deg 38.46% 84%);
+  --accent-200: hsl(18.95deg 100% 85.1%);
+  --accent-100: hsl(19.2deg 100% 95.1%);
+  --border-stroke: hsl(0deg 0% 88.42%);
+  --black: hsl(18deg 17.86% 10.98%);
+}
+
+@theme {
+  /* colors */
+  --color-background-300: var(--background-300);
+  --color-background-200: var(--background-200);
+  --color-background-100: var(--background-100);
+  --color-text-500: var(--text-500);
+  --color-text-400: var(--text-400);
+  --color-text-300: var(--text-300);
+  --color-text-200: var(--text-200);
+  --color-text-100: var(--text-100);
+  --color-primary-300: var(--primary-300);
+  --color-primary-200: var(--primary-200);
+  --color-primary-100: var(--primary-100);
+  --color-accent-200: var(--accent-200);
+  --color-accent-100: var(--accent-100);
+  --color-border-stroke: var(--border-stroke);
+  --color-black: var(--black);
+
+  /* radius */
+  --radius-micro: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+
+  /* gap */
+  --gap-micro: 4px;
+  --gap-sm: 8px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 32px;
+
+  /* padding */
+  --padding-micro: 4px;
+  --padding-sm: 8px;
+  --padding-md: 16px;
+  --padding-lg: 24px;
+  --padding-xl: 32px;
+
+  /* margin */
+  --margin-micro: 4px;
+  --margin-sm: 8px;
+  --margin-md: 16px;
+  --margin-lg: 24px;
+  --margin-xl: 32px;
+
+  /* font */
+  --font-charis-sil: var(--font-charis-sil);
+  --font-inter: var(--inter);
+
+  /* leading */
+  --leading-base: 120%;
+}
+
+body {
+  background: var(--background-100);
+  color: var(--text-500);
+}
