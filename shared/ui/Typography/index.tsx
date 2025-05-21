@@ -1,5 +1,5 @@
-import { ComponentProps, FC } from "react";
-import { tv, VariantProps } from "tailwind-variants";
+import { FC } from "react";
+import { tv } from "tailwind-variants";
 import {
   TypographyComponent,
   TypographyComponentPossibleNames,
