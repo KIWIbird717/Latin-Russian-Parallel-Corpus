@@ -10,7 +10,7 @@ export type TypographyComponentPossibleNames =
   | "Heading3"
   | "Heading4"
   | "Body"
-  | "Smal"
+  | "Small"
   | "Micro";
 
 export type TypographyVarinat = {

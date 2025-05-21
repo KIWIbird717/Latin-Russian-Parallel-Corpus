@@ -4,7 +4,7 @@ import { ComponentProps, FC } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 const variants = tv({
-  base: "flex gap-sm rounded-sm py-[7px] px-[20px] font-inter text-[15px] cursor-pointer transition-all duration-50 active:scale-95 ease-in-out",
+  base: "flex gap-sm rounded-sm justify-center py-[7px] px-[20px] font-inter text-[15px] cursor-pointer transition-all duration-50 active:scale-95 ease-in-out max-w-[600px]",
   variants: {
     variant: {
       primary: "bg-primary-300 text-text-100 hover:bg-primary-200",

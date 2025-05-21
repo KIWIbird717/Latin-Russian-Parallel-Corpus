@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { tv } from "tailwind-variants";
+import { cn } from "../../utils/cn";
 import {
   TypographyComponent,
   TypographyComponentPossibleNames,
@@ -15,7 +16,7 @@ export const typography = tv({
     heading3: "font-charis-sil text-[28px]",
     heading4: "font-charis-sil text-[21px]",
     body: "font-inter text-[15px]",
-    smal: "font-inter text-[12px]",
+    small: "font-inter text-[12px]",
     micro: "font-inter text-[9px]",
   },
   variants: {
@@ -45,7 +46,7 @@ export const typographyVariants: TypographyVarinat[] = [
   { name: "Heading3", tag: "h3", variant: "heading3" },
   { name: "Heading4", tag: "h4", variant: "heading4" },
   { name: "Body", tag: "p", variant: "body" },
-  { name: "Smal", tag: "p", variant: "smal" },
+  { name: "Small", tag: "p", variant: "small" },
   { name: "Micro", tag: "span", variant: "micro" },
 ];
 
@@ -77,9 +78,13 @@ const variants = typographyVariants.reduce(
       ...props
     }: TypographyType) => {
       const Tag = variant.tag;
-      const { [variant.variant]: typographyVariant } = typography({ weight, italic, underline });
+      const { base, [variant.variant]: typographyVariant } = typography({
+        weight,
+        italic,
+        underline,
+      });
       return (
-        <Tag {...props} className={typographyVariant({ className })}>
+        <Tag {...props} className={cn(base(), typographyVariant(), className)}>
           {children}
         </Tag>
       );
