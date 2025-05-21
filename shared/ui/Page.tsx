@@ -5,7 +5,7 @@ import { cn } from "../utils/cn";
 type PageProps = ComponentProps<typeof Layout>;
 export const Page: FC<PageProps> = ({ children, className, ...props }) => {
   return (
-    <Layout {...props} className={cn("py-lg mt-[64px]", className)}>
+    <Layout {...props} className={cn("py-lg gap-lg mt-[64px] flex flex-col", className)}>
       {children}
     </Layout>
   );
