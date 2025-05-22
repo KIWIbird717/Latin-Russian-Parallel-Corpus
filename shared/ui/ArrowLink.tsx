@@ -10,12 +10,12 @@ export const ArrowLink: FC<ArrowLinkProps> = ({ children, className, ...props })
     <Link
       {...props}
       className={cn(
-        "gap-sm text flex w-fit items-center justify-between duration-50 ease-in-out hover:opacity-80",
+        "gap-sm text group flex w-fit items-center justify-between duration-50 ease-in-out hover:opacity-80",
         className,
       )}
     >
       <Typography.Body weight="bold">{children}</Typography.Body>
-      <ArrowSvg />
+      <ArrowSvg className="transition-all duration-100 ease-out group-hover:translate-x-[5px]" />
     </Link>
   );
 };

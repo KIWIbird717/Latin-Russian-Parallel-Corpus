@@ -30,7 +30,12 @@ const IconLinks: FC = () => {
   return (
     <div className="gap-sm flex items-center">
       {iconLinks.map((link) => (
-        <a key={`icon-link-${link.id}`} href={link.href} target="_blank">
+        <a
+          key={`icon-link-${link.id}`}
+          href={link.href}
+          target="_blank"
+          className="transition-all duration-100 ease-out hover:translate-y-[-3px]"
+        >
           {link.icon}
         </a>
       ))}

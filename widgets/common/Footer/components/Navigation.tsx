@@ -14,7 +14,7 @@ export const Navigation: FC = () => {
       <div className="gap-sm flex flex-col">
         {navigationItems.map((item) => (
           <Link key={`footer-nav-item-${item.id}`} href={item.link}>
-            {item.label}
+            <Typography.Small>{item.label}</Typography.Small>
           </Link>
         ))}
       </div>

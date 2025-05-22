@@ -22,11 +22,12 @@ export const Resources: FC = () => {
       <div className="gap-sm flex flex-col">
         {resources.map((item) => (
           <Link
-            className="gap-sm flex items-center"
+            className="gap-sm group flex items-center"
             key={`footer-resourses-item-${item.id}`}
             href={item.href}
           >
-            {item.title} <ExtraLink />
+            <Typography.Small>{item.title} </Typography.Small>
+            <ExtraLink className="transition-all duration-100 ease-out group-hover:translate-x-[3px] group-hover:translate-y-[-3px]" />
           </Link>
         ))}
       </div>
