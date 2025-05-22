@@ -1,6 +1,7 @@
 import { ArrowLink } from "@/shared/ui/ArrowLink";
 import { Card } from "@/shared/ui/Card";
 import { Typography } from "@/shared/ui/Typography";
+import { cn } from "@/shared/utils/cn";
 import { useTranslations } from "next-intl";
 import { FC, useMemo } from "react";
 
@@ -12,7 +13,10 @@ type SuggestionType = {
   href: string;
 };
 
-export const Suggestions: FC = () => {
+type SuggestionsProps = {
+  className?: string;
+};
+export const Suggestions: FC<SuggestionsProps> = (props) => {
   const t = useTranslations("Main.suggestions");
 
   const suggestions = useMemo<SuggestionType[]>(
@@ -43,7 +47,7 @@ export const Suggestions: FC = () => {
   );
 
   return (
-    <div className="gap-md flex">
+    <div className={cn("gap-md flex", props.className)}>
       {suggestions.map(({ id, ...suggestion }) => (
         <SuggestionCard key={`suggestion-card-${id}`} {...suggestion} />
       ))}

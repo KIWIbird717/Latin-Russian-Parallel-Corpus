@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <Page>
       <Hero />
-      <Suggestions />
+      <Suggestions className="mb-[170px]" />
     </Page>
   );
 }

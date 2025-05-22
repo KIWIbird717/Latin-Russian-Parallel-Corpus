@@ -7,7 +7,7 @@ import { useNavigationItems } from "@/shared/hooks/useNavigationItems";
 
 export const Navbar: FC = () => {
   return (
-    <nav className="border-border-stroke py-sm bg-background-100 fixed top-0 left-0 w-full border-b">
+    <nav className="border-border-stroke py-sm bg-background-100 fixed top-0 left-0 z-[100] w-full border-b">
       <Layout className="flex items-center justify-between">
         <Logo />
         <NavigationItems />

@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { FC } from "react";
 import SearchSvg from "@/public/svg/search.svg";
 import BookSvg from "@/public/svg/book.svg";
+import BlurText from "@/shared/ui/BlurText";
 
 export const Hero: FC = () => {
   const t = useTranslations("Main.hero");
@@ -11,7 +12,13 @@ export const Hero: FC = () => {
   return (
     <div className="gap-xl my-[110px] flex flex-col items-center text-center">
       <div className="gap-md flex flex-col items-center">
-        <Typography.Heading1 className="max-w-[800px]">{t("title")}</Typography.Heading1>
+        <BlurText
+          text={t("title")}
+          delay={150}
+          animateBy="words"
+          direction="top"
+          className="font-charis-sil mb-8 flex max-w-[800px] items-center justify-center text-center text-[48px]"
+        />
         <Typography.Body className="max-w-[680px]">{t("description")}</Typography.Body>
       </div>
       <div className="gap-md flex items-center">
