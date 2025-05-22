@@ -4,5 +4,5 @@ import SearchSvg from "@/public/svg/search.svg";
 
 type SearchProps = ComponentProps<typeof Input>;
 export const Search: FC<SearchProps> = (props) => {
-  return <Input {...props} icon={<SearchSvg className="[&_path]:stroke-text-200" />} />;
+  return <Input {...props} icon={<SearchSvg className="[&_path]:stroke-text-200 scale-75" />} />;
 };

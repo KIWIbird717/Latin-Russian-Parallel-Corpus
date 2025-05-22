@@ -1,0 +1,34 @@
+"use client";
+
+import { cn } from "@/shared/lib/utils";
+import { Disclosure } from "@/shared/ui/Disclosure";
+import { Input } from "@/shared/ui/Input";
+import { Search } from "@/shared/ui/Search";
+import { Tabs } from "@/shared/ui/Tabs";
+import { FC } from "react";
+
+type MorphSearchingFiltersProps = { className?: string };
+export const MorphSearchingFilters: FC<MorphSearchingFiltersProps> = ({ className }) => {
+  return (
+    <form className={cn("gap-md flex flex-col", className)}>
+      <Tabs
+        id={"search-filters"}
+        className="w-full"
+        tabs={[
+          { id: 1, label: "Словоформа" },
+          { id: 2, label: "Лемма" },
+        ]}
+      />
+      <Search label="Поисковый запрос" placeholder="Введите слово" />
+    </form>
+  );
+};
+
+type AuthorAndOperasFiltersProps = {};
+const AuthorAndOperasFilters: FC<AuthorAndOperasFiltersProps> = (props) => {
+  return (
+    <Disclosure label="Авторы и Опреы">
+      <Input label="Автор" placeholder="Выберите автора" />
+    </Disclosure>
+  );
+};

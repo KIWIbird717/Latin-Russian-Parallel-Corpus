@@ -15,7 +15,7 @@ export const Input: FC<InputProps> = ({ className, label, icon, ...props }) => {
           className,
         )}
       />
-      {icon && <div className="absolute top-1/2 right-[8px] -translate-y-0.5">{icon}</div>}
+      {icon && <div className="absolute right-[8px] bottom-[20px] translate-y-1/2">{icon}</div>}
     </div>
   );
 };
