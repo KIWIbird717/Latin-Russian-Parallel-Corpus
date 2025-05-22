@@ -1,11 +1,15 @@
 "use client";
 
 import { BreadcrumbHeader } from "@/shared/ui/BreadcrumbHeader";
+import { Checkbox } from "@/shared/ui/Chekbox";
 import { Input } from "@/shared/ui/Input";
 import { MultipleSelect } from "@/shared/ui/intent/ui/multiple-select";
+import { Select } from "@/shared/ui/intent/ui/select";
+import { Slider } from "@/shared/ui/intent/ui/slider";
 import { Page } from "@/shared/ui/Page";
 import { Search } from "@/shared/ui/Search";
 import { Tabs } from "@/shared/ui/Tabs";
+import { useState } from "react";
 
 const fruits = [
   { id: 1, name: "Apple" },
@@ -30,7 +34,17 @@ const fruits = [
   { id: 20, name: "Watermelon" },
 ];
 
+export const software = [
+  { id: 1, name: "Adobe Photoshop" },
+  { id: 2, name: "Sketch" },
+  { id: 3, name: "Figma" },
+  { id: 4, name: "Adobe XD" },
+  { id: 5, name: "InVision" },
+];
+
 export default function SearchPage() {
+  const [isCheckbox, setIsCheckbox] = useState(false);
+
   return (
     <>
       <BreadcrumbHeader title="Поиск" />
@@ -51,6 +65,23 @@ export default function SearchPage() {
             return <MultipleSelect.Item textValue={item.name}>{item.name}</MultipleSelect.Item>;
           }}
         </MultipleSelect>
+
+        <Select label="Design software" placeholder="Select a software" className="max-w-xs">
+          <Select.Trigger />
+          <Select.List items={software}>
+            {(item) => (
+              <Select.Option id={item.id} textValue={item.name}>
+                {item.name}
+              </Select.Option>
+            )}
+          </Select.List>
+        </Select>
+
+        <Checkbox isSelected={isCheckbox} onChange={setIsCheckbox}>
+          Checkout
+        </Checkbox>
+
+        <Slider label="Slider" className="max-w-xs" postfix="Postfix" />
       </Page>
     </>
   );
