@@ -10,12 +10,12 @@ export const Input: FC<InputProps> = ({ className, label, icon, ...props }) => {
       <input
         {...props}
         className={cn(
-          "border-border-stroke active:border-border-stroke px-sm py-sm font-inter focus-within:ring-primary-100 rounded-sm border text-[14px] outline-none focus-within:ring-2",
+          "border-border-stroke active:border-border-stroke px-sm py-sm font-inter focus-within:ring-primary-100 rounded-sm border text-[14px] transition duration-200 ease-out outline-none focus-within:ring-2",
           icon && "pr-[33px]",
           className,
         )}
       />
-      {icon && <div className="absolute top-1/2 right-[8px] -translate-y-1/2">{icon}</div>}
+      {icon && <div className="absolute top-1/2 right-[8px] -translate-y-0.5">{icon}</div>}
     </div>
   );
 };
