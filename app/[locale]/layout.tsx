@@ -4,6 +4,7 @@ import { charisSIL, inter } from "@/shared/fonts";
 import { cn } from "@/shared/utils/cn";
 import { NextIntlClientProvider } from "next-intl";
 import { Navbar } from "@/widgets/common/Navbar";
+import { Footer } from "@/widgets/common/Footer";
 
 export const metadata: Metadata = {
   title: "Latin Russian Corpus",
@@ -19,8 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <NextIntlClientProvider>
         <body className={cn("antialiased", charisSIL.variable, inter.variable)}>
-          {children}
           <Navbar />
+          {children}
+          <Footer />
         </body>
       </NextIntlClientProvider>
     </html>
