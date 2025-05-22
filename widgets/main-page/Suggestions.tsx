@@ -43,7 +43,7 @@ export const Suggestions: FC<SuggestionsProps> = (props) => {
         href: "",
       },
     ],
-    [],
+    [t],
   );
 
   return (
