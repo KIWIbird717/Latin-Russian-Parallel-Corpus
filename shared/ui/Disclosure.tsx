@@ -13,6 +13,7 @@ export const Disclosure: FC<DisclosureProps> = ({ children, label, className, ..
   return (
     <div {...props} className={cn("gap-md border-border-stroke flex flex-col border-b", className)}>
       <button
+        type="button"
         onClick={() => setIsOpen((state) => !state)}
         className="gap-lg flex cursor-pointer items-center justify-between"
       >
@@ -22,7 +23,7 @@ export const Disclosure: FC<DisclosureProps> = ({ children, label, className, ..
 
       <AnimatePresence initial={false}>
         <motion.div
-          className="gap-md flex flex-col overflow-hidden"
+          className="gap-md flex flex-col overflow-hidden px-[2px]"
           animate={{ height: isOpen ? "inherit" : 0 }}
         >
           {children}
