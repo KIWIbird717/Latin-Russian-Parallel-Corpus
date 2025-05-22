@@ -13,7 +13,7 @@ export const Resources: FC = () => {
       { id: 3, title: t("lingvisticheskaya-laboratoriya"), href: "" },
       { id: 4, title: t("obratnaya-svyaz"), href: "" },
     ],
-    [],
+    [t],
   );
 
   return (
