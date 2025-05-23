@@ -13,5 +13,5 @@ export const MorphSearchWidget: FC = () => {
 };
 type MorphViewerProps = { className?: string };
 const MorphViewer: FC<MorphViewerProps> = ({ className }) => {
-  return <Card className={cn("", className)}></Card>;
+  return <Card className={cn("min-h-[700px]", className)}></Card>;
 };

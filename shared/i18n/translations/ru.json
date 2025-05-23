@@ -50,7 +50,7 @@
       "wordCount": "{count, plural, one {# слово} few {# слова} many {# слов} other {# слова}}"
     },
     "author-and-operas": {
-      "avtory-i-oprey": "Авторы и Опреы",
+      "avtory-i-oprey": "Авторы и Оперы",
       "vyberite-avtora": "Выберите автора",
       "vyberite-operu": "Выберите оперу",
       "opery": "Оперы",

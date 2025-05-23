@@ -10,7 +10,6 @@ import { CoreferencesFilters } from "./components/CoreferencesFilters";
 import { Button } from "@/shared/ui/Button";
 import { useTranslations } from "next-intl";
 import SearchSvg from "@/public/svg/search.svg";
-import toast from "react-hot-toast";
 
 type MorphSearchingFiltersProps = { className?: string };
 export const MorphSearchingFilters: FC<MorphSearchingFiltersProps> = ({ className }) => {
@@ -18,7 +17,6 @@ export const MorphSearchingFilters: FC<MorphSearchingFiltersProps> = ({ classNam
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    toast.success("huh");
   };
 
   return (
