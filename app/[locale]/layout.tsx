@@ -5,6 +5,8 @@ import { cn } from "@/shared/utils/cn";
 import { NextIntlClientProvider } from "next-intl";
 import { Navbar } from "@/widgets/common/Navbar";
 import { Footer } from "@/widgets/common/Footer";
+import { MSWMocksProvider } from "@/shared/providers/MSWMocksProvider";
+import { TanstackProvider } from "@/shared/providers/TanstackProvider";
 
 export const metadata: Metadata = {
   title: "Latin Russian Corpus",
@@ -21,7 +23,9 @@ export default function RootLayout({
       <NextIntlClientProvider>
         <body className={cn("antialiased", charisSIL.variable, inter.variable)}>
           <Navbar />
-          {children}
+          <TanstackProvider>
+            <MSWMocksProvider>{children}</MSWMocksProvider>
+          </TanstackProvider>
           <Footer />
         </body>
       </NextIntlClientProvider>

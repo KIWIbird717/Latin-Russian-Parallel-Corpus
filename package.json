@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.8.0",
     "@intentui/icons": "^1.11.0",
     "@svgr/webpack": "^8.1.0",
+    "@tanstack/query-sync-storage-persister": "^5.76.2",
+    "@tanstack/react-query": "^5.76.2",
+    "@tanstack/react-query-persist-client": "^5.76.2",
+    "axios": "^1.9.0",
+    "date-fns": "^4.1.0",
     "motion": "^12.12.1",
+    "msw": "^2.8.4",
     "next": "15.3.2",
     "next-intl": "^4.1.0",
     "react": "^19.0.0",
