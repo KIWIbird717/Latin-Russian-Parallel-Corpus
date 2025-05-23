@@ -8,10 +8,13 @@ import { useQuery } from "@tanstack/react-query";
 import { FC, useState } from "react";
 import { Typography } from "@/shared/ui/Typography";
 import { capitalize } from "@/shared/utils/capitalize";
+import { useTranslations } from "next-intl";
 
 const MULTIPLE_SELECT_THRESHOLD = 4;
 
 export const MorphologicFilters: FC = () => {
+  const t = useTranslations("Filters.morphologic");
+
   const { data: filtersData, isLoading } = useQuery({
     queryKey: ["GET /morphologic-filters"],
     queryFn: MockService.getMorphologicFilters,
@@ -60,7 +63,7 @@ export const MorphologicFilters: FC = () => {
   };
 
   return (
-    <Disclosure label="Морфологические фильтры" disabled={isLoading}>
+    <Disclosure label={t("morfologicheskie-filtry")} disabled={isLoading}>
       {filtersData?.filters && (
         <div className="gap-md flex flex-col">
           {renderFilterOptions("Pars Orationis", filtersData.filters.parsOrationis)}

@@ -41,8 +41,24 @@
     "copyright": "© ILS RAS 2025. Все права защищены. Платформа разработана"
   },
   "Filters": {
+    "search": "Поиск",
+    "slovoforma": "Словоформа",
+    "lemma": "Лемма",
+    "poiskovyi-zapros": "Поисковый запрос",
+    "vvedite-slovo": "Введите слово",
     "coreferences": {
       "wordCount": "{count, plural, one {# слово} few {# слова} many {# слов} other {# слова}}"
+    },
+    "author-and-operas": {
+      "avtory-i-oprey": "Авторы и Опреы",
+      "vyberite-avtora": "Выберите автора",
+      "vyberite-operu": "Выберите оперу",
+      "opery": "Оперы",
+      "avtor": "Автор"
+    },
+    "morphologic": {
+
+      "morfologicheskie-filtry": "Морфологические фильтры"
     }
   }
 }

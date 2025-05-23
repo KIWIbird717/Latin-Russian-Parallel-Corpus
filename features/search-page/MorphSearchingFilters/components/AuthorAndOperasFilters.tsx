@@ -4,9 +4,12 @@ import { MockService } from "@/shared/services/mock";
 import { Disclosure } from "@/shared/ui/Disclosure";
 import { ComboBox } from "@/shared/ui/intent/ui/combo-box";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
 import { FC } from "react";
 
 export const AuthorAndOperasFilters: FC = () => {
+  const t = useTranslations("Filters.author-and-operas");
+
   const { data: authorsData, isLoading: isAuthorsLoading } = useQuery({
     queryKey: ["GET /authors"],
     queryFn: MockService.getAuthors,
@@ -18,8 +21,8 @@ export const AuthorAndOperasFilters: FC = () => {
   });
 
   return (
-    <Disclosure label="Авторы и Опреы">
-      <ComboBox placeholder="Выберите автора" label="Автор" isDisabled={isAuthorsLoading}>
+    <Disclosure label={t("avtory-i-oprey")}>
+      <ComboBox placeholder={t("vyberite-avtora")} label={t("avtor")} isDisabled={isAuthorsLoading}>
         <ComboBox.Input />
         <ComboBox.List items={authorsData?.authors}>
           {(item) => (
@@ -30,7 +33,7 @@ export const AuthorAndOperasFilters: FC = () => {
         </ComboBox.List>
       </ComboBox>
 
-      <ComboBox placeholder="Выберите оперу" label="Оперы" isDisabled={isWorkLoading}>
+      <ComboBox placeholder={t("vyberite-operu")} label={t("opery")} isDisabled={isWorkLoading}>
         <ComboBox.Input />
         <ComboBox.List items={workData?.bookWorks}>
           {(item) => (
