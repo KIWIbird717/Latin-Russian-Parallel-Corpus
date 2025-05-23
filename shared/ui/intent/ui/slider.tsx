@@ -114,12 +114,12 @@ const Slider = ({
     >
       <div className="gap-micro flex items-center">
         {props.label && <Label>{props.label}</Label>}
-        {output === "inline" && (
+        {output === "inline" && !postfix && (
           <SliderOutput className="text-text-200 text-[12px] tabular-nums data-[orientation=horizontal]:ml-auto data-[orientation=vertical]:mx-auto">
             {({ state }) => state.values.map((_, i) => state.getThumbValueLabel(i)).join(" – ")}
           </SliderOutput>
         )}
-        <Typography.Small className="text-text-200">
+        <Typography.Small className="text-text-200 ml-auto">
           {output === "inline" && postfix}
         </Typography.Small>
       </div>

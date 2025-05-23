@@ -6,6 +6,7 @@ import { Tabs } from "@/shared/ui/Tabs";
 import { FC } from "react";
 import { AuthorAndOperasFilters } from "./components/AuthorAndOperasFilters";
 import { MorphologicFilters } from "./components/MorphologicFilters";
+import { CoreferencesFilters } from "./components/CoreferencesFilters";
 
 type MorphSearchingFiltersProps = { className?: string };
 export const MorphSearchingFilters: FC<MorphSearchingFiltersProps> = ({ className }) => {
@@ -23,6 +24,7 @@ export const MorphSearchingFilters: FC<MorphSearchingFiltersProps> = ({ classNam
 
       <AuthorAndOperasFilters />
       <MorphologicFilters />
+      <CoreferencesFilters />
     </form>
   );
 };

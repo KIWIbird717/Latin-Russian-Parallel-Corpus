@@ -39,5 +39,10 @@
     "lingvisticheskaya-laboratoriya": "Лингвистическая лаборатория",
     "obratnaya-svyaz": "Обратная связь",
     "copyright": "© ILS RAS 2025. Все права защищены. Платформа разработана"
+  },
+  "Filters": {
+    "coreferences": {
+      "wordCount": "{count, plural, one {# слово} few {# слова} many {# слов} other {# слова}}"
+    }
   }
 }
