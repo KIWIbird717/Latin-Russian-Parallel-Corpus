@@ -97,3 +97,27 @@ export type MorphologicFilters = {
   genusVerbi: GenusVerbi[];
   persona: Persona[];
 };
+
+export type Property = {
+  id: number;
+  label: string;
+  value: string;
+};
+
+export type Word = {
+  id: string;
+  value: string;
+  description: string;
+  properties: Property[];
+  note: string | undefined;
+};
+
+export type CorpusSearchTextResult = {
+  searchedWord: string;
+  author: string;
+  source: string;
+  sourceId: string;
+  page: number;
+  line: number;
+  text: (Word | string)[];
+};

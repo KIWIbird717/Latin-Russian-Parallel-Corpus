@@ -105,3 +105,9 @@ body {
   text-rendering: optimizeSpeed;
   zoom: 1;
 }
+
+*::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  scrollbar-width: none;
+}

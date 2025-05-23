@@ -10,13 +10,37 @@ import { CoreferencesFilters } from "./components/CoreferencesFilters";
 import { Button } from "@/shared/ui/Button";
 import { useTranslations } from "next-intl";
 import SearchSvg from "@/public/svg/search.svg";
+import { useMutation } from "@tanstack/react-query";
+import { MockService } from "@/shared/services/mock";
+import { CorpusSearchTextResult } from "@/shared/lib/msw/handlers/types";
+import toast from "react-hot-toast";
 
-type MorphSearchingFiltersProps = { className?: string };
-export const MorphSearchingFilters: FC<MorphSearchingFiltersProps> = ({ className }) => {
+type MorphSearchingFiltersProps = {
+  className?: string;
+  onMorphResponse: (res: CorpusSearchTextResult[]) => void;
+};
+export const MorphSearchingFilters: FC<MorphSearchingFiltersProps> = ({
+  className,
+  onMorphResponse,
+}) => {
   const t = useTranslations("Filters");
 
+  const { mutate } = useMutation({
+    mutationKey: ["GET /corpus-search"],
+    mutationFn: MockService.getCorpusSearch,
+    onSuccess: (res) => {
+      toast.success(t("success", { count: res.results.length }));
+      onMorphResponse(res.results);
+    },
+    onError: () => toast.error("Ошибка получения текстов"),
+  });
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    const loader = toast.loading("Поиск...");
     event.preventDefault();
+    mutate(undefined, {
+      onSettled: () => toast.dismiss(loader),
+    });
   };
 
   return (

@@ -46,6 +46,7 @@
     "lemma": "Лемма",
     "poiskovyi-zapros": "Поисковый запрос",
     "vvedite-slovo": "Введите слово",
+    "success": "Найдено {count, plural, one {# совпадение} few {# совпадения} many {# совпадений} other {# совпадения}}",
     "coreferences": {
       "wordCount": "{count, plural, one {# слово} few {# слова} many {# слов} other {# слова}}"
     },
@@ -60,5 +61,8 @@
 
       "morfologicheskie-filtry": "Морфологические фильтры"
     }
+  },
+  "SearchResults": {
+    "search-results": "Найдено {count, plural, one {# совпадение} few {# совпадения} many {# совпадений} other {# совпадения}}"
   }
 }
