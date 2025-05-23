@@ -4,6 +4,7 @@ import {
   BookWork,
   MorphologicFilters,
   CorpusSearchTextResult,
+  Statistics,
 } from "@/shared/lib/msw/handlers/types";
 
 export namespace MockService {
@@ -36,6 +37,14 @@ export namespace MockService {
    */
   export const getCorpusSearch = async () => {
     const response = await serviceUrl.get<{ results: CorpusSearchTextResult[] }>("/corpus-search");
+    return response.data;
+  };
+
+  /**
+   * GET /statistics-info
+   */
+  export const getStatistics = async () => {
+    const response = await serviceUrl.get<{ data: Statistics }>("/statistics-info");
     return response.data;
   };
 }

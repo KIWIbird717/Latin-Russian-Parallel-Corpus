@@ -121,3 +121,23 @@ export type CorpusSearchTextResult = {
   line: number;
   text: (Word | string)[];
 };
+
+export type Statistics = {
+  totalWordFormation: number;
+  totalMorphologyForms: number;
+  wordsWithFormsByLocale: {
+    latin: number;
+    russian: number;
+    greek: number;
+  };
+  morphologiesByLocale: {
+    latin: number;
+    russian: number;
+    greek: number;
+  };
+  authorsAndTranslations: {
+    authors: number;
+    translations: number;
+    total: number;
+  };
+};
