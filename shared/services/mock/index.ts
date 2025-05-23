@@ -1,5 +1,5 @@
 import { serviceUrl } from "@/shared/lib/axios";
-import { Author, BookWork } from "@/shared/lib/msw/handlers/types";
+import { Author, BookWork, MorphologicFilters } from "@/shared/lib/msw/handlers/types";
 
 export namespace MockService {
   /**
@@ -15,6 +15,16 @@ export namespace MockService {
    */
   export const getBookWorks = async () => {
     const response = await serviceUrl.get<{ bookWorks: BookWork[] }>("/book-works");
+    return response.data;
+  };
+
+  /**
+   * GET /morphologic-filters
+   */
+  export const getMorphologicFilters = async () => {
+    const response = await serviceUrl.get<{
+      filters: MorphologicFilters;
+    }>("/morphologic-filters");
     return response.data;
   };
 }

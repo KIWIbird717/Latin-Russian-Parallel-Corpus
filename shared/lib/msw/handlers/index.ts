@@ -1,5 +1,18 @@
 import { http, HttpResponse } from "msw";
-import { Author, BookWork } from "./types";
+import {
+  Author,
+  BookWork,
+  ParsOrationis,
+  Tempus,
+  Modus,
+  Causus,
+  GenusNominis,
+  Numerus,
+  Gradus,
+  GenusVerbi,
+  Persona,
+  MorphologicFilters,
+} from "./types";
 import { faker } from "@faker-js/faker";
 import { capitalize } from "@/shared/utils/capitalize";
 
@@ -13,6 +26,7 @@ export const handlers = [
     }));
     return HttpResponse.json({ authors });
   }),
+
   http.get("/book-works", () => {
     const bookWorks: BookWork[] = Array.from({ length: 50 }).map(() => ({
       id: faker.string.uuid(),
@@ -27,5 +41,20 @@ export const handlers = [
       createdAt: faker.date.past(),
     }));
     return HttpResponse.json({ bookWorks });
+  }),
+
+  http.get("/morphologic-filters", () => {
+    const filters: MorphologicFilters = {
+      parsOrationis: Object.values(ParsOrationis),
+      tempus: Object.values(Tempus),
+      modus: Object.values(Modus),
+      causus: Object.values(Causus),
+      genusNominis: Object.values(GenusNominis),
+      numerus: Object.values(Numerus),
+      gradus: Object.values(Gradus),
+      genusVerbi: Object.values(GenusVerbi),
+      persona: Object.values(Persona),
+    };
+    return HttpResponse.json({ filters });
   }),
 ];

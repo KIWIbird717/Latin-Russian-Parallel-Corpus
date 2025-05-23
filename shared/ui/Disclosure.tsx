@@ -6,12 +6,25 @@ import { ComponentProps, FC, ReactNode, useState } from "react";
 import ChevronSvg from "@/public/svg/chevron.svg";
 import { cn } from "@/shared/lib/utils";
 
-type DisclosureProps = ComponentProps<"div"> & { label: ReactNode };
-export const Disclosure: FC<DisclosureProps> = ({ children, label, className, ...props }) => {
+type DisclosureProps = ComponentProps<"div"> & { label: ReactNode; disabled?: boolean };
+export const Disclosure: FC<DisclosureProps> = ({
+  children,
+  label,
+  className,
+  disabled,
+  ...props
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div {...props} className={cn("gap-md border-border-stroke flex flex-col border-b", className)}>
+    <div
+      {...props}
+      className={cn(
+        "gap-md border-border-stroke flex flex-col border-b",
+        disabled && "pointer-events-none opacity-50",
+        className,
+      )}
+    >
       <button
         type="button"
         onClick={() => setIsOpen((state) => !state)}
