@@ -7,7 +7,7 @@ type BreadcrumbHeaderProps = {
 };
 export const BreadcrumbHeader: FC<BreadcrumbHeaderProps> = (props) => {
   return (
-    <section className="bg-primary-100 py-sm w-full pt-[64px]">
+    <section className="bg-primary-100 py-sm animate-fade-in w-full pt-[64px]">
       <Layout>
         <Typography.Heading2>{props.title}</Typography.Heading2>
       </Layout>
