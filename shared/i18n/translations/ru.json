@@ -58,11 +58,16 @@
       "avtor": "Автор"
     },
     "morphologic": {
-
       "morfologicheskie-filtry": "Морфологические фильтры"
     }
   },
   "SearchResults": {
     "search-results": "Найдено {count, plural, one {# совпадение} few {# совпадения} many {# совпадений} other {# совпадения}}"
+  },
+  "MorphModalContent": {
+
+    "morfologicheskii-analiz": "Морфологический анализ",
+    "word-info": "Подробная морфологическая информация по выбранному слову.",
+    "notes": "Примечания:"
   }
 }
