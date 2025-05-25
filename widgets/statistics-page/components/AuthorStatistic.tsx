@@ -5,6 +5,7 @@ import { Typography } from "@/shared/ui/Typography";
 import { Skeleton } from "@/shared/ui/Skeleton";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "motion/react";
+import { CountUp } from "@/shared/ui/CountUp";
 
 type AuthorStatisticProps = {
   data: {
@@ -27,7 +28,7 @@ export const AuthorStatistic: FC<AuthorStatisticProps> = ({ data }) => {
   );
 
   return (
-    <div className="flex flex-col items-start">
+    <div className="gap-sm flex flex-col items-start">
       <AnimatePresence>
         {items.map(({ label, value }) =>
           value ? (
@@ -44,7 +45,9 @@ export const AuthorStatistic: FC<AuthorStatisticProps> = ({ data }) => {
                 </div>
               </div>
               <div className="col-span-1">
-                <Typography.Body>{value}</Typography.Body>
+                <Typography.Body>
+                  <CountUp to={value} from={0} decimalPartLength={0} />
+                </Typography.Body>
               </div>
             </motion.div>
           ) : (

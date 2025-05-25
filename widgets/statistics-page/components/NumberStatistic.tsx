@@ -3,8 +3,7 @@
 import { FC } from "react";
 import { Typography } from "@/shared/ui/Typography";
 import { Skeleton } from "@/shared/ui/Skeleton";
-
-const formatter = new Intl.NumberFormat();
+import { CountUp } from "@/shared/ui/CountUp";
 
 type NumberStatisticProps = {
   value?: number;
@@ -15,7 +14,9 @@ export const NumberStatistic: FC<NumberStatisticProps> = ({ value, description }
   return (
     <div className="gap-sm flex flex-col">
       {value ? (
-        <Typography.Heading3 weight="bold">{formatter.format(value)}</Typography.Heading3>
+        <Typography.Heading3 weight="bold">
+          <CountUp to={value} from={0} decimalPartLength={0} />
+        </Typography.Heading3>
       ) : (
         <Skeleton className="h-[34px] w-[215px]" />
       )}

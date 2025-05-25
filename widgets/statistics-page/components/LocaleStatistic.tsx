@@ -4,6 +4,7 @@ import { cn } from "@/shared/lib/utils";
 import { Skeleton } from "@/shared/ui/Skeleton";
 import { capitalize } from "@/shared/utils/capitalize";
 import { AnimatePresence, motion } from "motion/react";
+import { CountUp } from "@/shared/ui/CountUp";
 
 type LocaleStatisticProps = {
   data: Record<string, number>;
@@ -12,7 +13,7 @@ type LocaleStatisticProps = {
 
 export const LocaleStatistic: FC<LocaleStatisticProps> = ({ data, colors }) => {
   return (
-    <div className="flex flex-col items-start">
+    <div className="items-star gap-sm flex flex-col">
       <AnimatePresence>
         {Object.entries(data).length
           ? Object.entries(data).map(([locale, value]) => (
@@ -20,7 +21,7 @@ export const LocaleStatistic: FC<LocaleStatisticProps> = ({ data, colors }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="grid grid-cols-3"
+                className="grid w-full grid-cols-3"
                 key={`${locale}-label`}
               >
                 <div className="col-span-2">
@@ -30,12 +31,14 @@ export const LocaleStatistic: FC<LocaleStatisticProps> = ({ data, colors }) => {
                   </div>
                 </div>
                 <div key={`${locale}-value`} className="col-span-1">
-                  <Typography.Body>{value}</Typography.Body>
+                  <Typography.Body>
+                    <CountUp to={value} from={0} decimalPartLength={0} />
+                  </Typography.Body>
                 </div>
               </motion.div>
             ))
-          : Array.from({ length: 3 }).map((item, index) => (
-              <div className="grid grid-cols-3" key={`${index}-label-skeleton`}>
+          : Array.from({ length: 3 }).map((_, index) => (
+              <div className="grid w-full grid-cols-3" key={`${index}-label-skeleton`}>
                 <Skeleton className="col-span-2 mb-[3px] h-[15px] w-full" />
                 <Skeleton className="col-span-1 mb-[3px] h-[15px] w-full" />
               </div>
