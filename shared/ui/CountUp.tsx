@@ -107,7 +107,7 @@ export const CountUp = memo(
       });
 
       return () => unsubscribe();
-    }, [springValue, separator, decimalPartLength, onUpdate, postfix]);
+    }, [springValue, separator, decimalPartLength, onUpdate, postfix, prefix]);
 
     return <span className={`${className}`} ref={spanRef} />;
   },
