@@ -14,7 +14,7 @@ export const CoreferencesFilters: FC = () => {
     <Disclosure label="Поиск кореферентностей">
       <Input placeholder="Введите первое слово" label="Первое слово" />
       <Input placeholder="Введите второе слово" label="Второе слово" />
-      <div className="px-[8px]">
+      <div className="px-[10px]">
         <Slider
           label="Размер окна"
           value={windowSize}

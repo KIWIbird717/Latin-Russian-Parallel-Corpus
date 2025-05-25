@@ -32,7 +32,7 @@ export const MorphSearchingFilters: FC<MorphSearchingFiltersProps> = ({
       toast.success(t("success", { count: res.results.length }));
       onMorphResponse(res.results);
     },
-    onError: () => toast.error("Ошибка получения текстов"),
+    onError: () => toast.error(t("no-texts-error")),
   });
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {

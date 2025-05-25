@@ -11,7 +11,11 @@ import { toast } from "react-hot-toast";
 export const AuthorAndOperasFilters: FC = () => {
   const t = useTranslations("Filters.author-and-operas");
 
-  const { data: authorsData, isLoading: isAuthorsLoading } = useCustomQuery({
+  const {
+    data: authorsData,
+    isLoading: isAuthorsLoading,
+    error: authorsError,
+  } = useCustomQuery({
     queryKey: ["GET /authors"],
     queryFn: MockService.getAuthors,
     onError: () => {
@@ -19,7 +23,11 @@ export const AuthorAndOperasFilters: FC = () => {
     },
   });
 
-  const { data: workData, isLoading: isWorkLoading } = useCustomQuery({
+  const {
+    data: workData,
+    isLoading: isWorkLoading,
+    error: booksError,
+  } = useCustomQuery({
     queryKey: ["GET /book-works"],
     queryFn: MockService.getBookWorks,
     onError: () => {
@@ -27,8 +35,11 @@ export const AuthorAndOperasFilters: FC = () => {
     },
   });
 
+  const isDisclosureDisabled =
+    isAuthorsLoading || isWorkLoading || Boolean(authorsError) || Boolean(booksError);
+
   return (
-    <Disclosure label={t("avtory-i-oprey")}>
+    <Disclosure label={t("avtory-i-oprey")} disabled={isDisclosureDisabled}>
       <ComboBox placeholder={t("vyberite-avtora")} label={t("avtor")} isDisabled={isAuthorsLoading}>
         <ComboBox.Input />
         <ComboBox.List items={authorsData?.authors}>
