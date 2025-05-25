@@ -215,7 +215,7 @@ export const handlers = [
     return HttpResponse.json({ results });
   }),
 
-  http.get("/statistics-info", () => {
+  http.get("/info-stats", () => {
     const data: Statistics = {
       totalWordFormation: faker.number.int({ min: 1000, max: 5000 }),
       totalMorphologyForms: faker.number.int({ min: 5000, max: 10000 }),

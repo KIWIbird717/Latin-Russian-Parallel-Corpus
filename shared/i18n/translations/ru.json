@@ -69,5 +69,19 @@
     "morfologicheskii-analiz": "Морфологический анализ",
     "word-info": "Подробная морфологическая информация по выбранному слову.",
     "notes": "Примечания:"
+  },
+  "Statistics": {
+    "vsego-slovoform": "Всего Словоформ",
+    "total-words": "Общее количество словоформ в корпусе",
+    "formy-slov-s-morfologiei": "Формы слов с Морфологией",
+    "morphologic-words": "Словоформы с морфологической информацией",
+    "words-with-forms-by-locale": "Формы слов с Морфологией",
+    "morphs-by-locale": "Формы слов с Морфологией",
+    "authors-and-translations": "Авторы и Переводы",
+    "authors-statistics": {
+      "authors": "Авторы",
+      "translations": "Переводы",
+      "total": "Всего"
+    }
   }
 }

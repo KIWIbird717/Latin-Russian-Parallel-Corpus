@@ -1,0 +1,49 @@
+import { FC, Fragment, useMemo } from "react";
+import { Typography } from "@/shared/ui/Typography";
+import { Skeleton } from "@/shared/ui/Skeleton";
+import { useTranslations } from "next-intl";
+
+type AuthorStatisticProps = {
+  data: {
+    authors: number;
+    translations: number;
+    total: number;
+  };
+};
+
+export const AuthorStatistic: FC<AuthorStatisticProps> = ({ data }) => {
+  const t = useTranslations("Statistics.authors-statistics");
+
+  const items = useMemo(
+    () => [
+      { label: t("authors"), value: data?.authors },
+      { label: t("translations"), value: data?.translations },
+      { label: t("total"), value: data?.total },
+    ],
+    [t, data],
+  );
+
+  return (
+    <div className="grid grid-cols-3 items-start">
+      {items.map(({ label, value }) =>
+        value ? (
+          <Fragment key={`${label}-label`}>
+            <div className="col-span-2">
+              <div className="gap-micro flex items-center justify-start">
+                <Typography.Body>{label}</Typography.Body>
+              </div>
+            </div>
+            <div className="col-span-1">
+              <Typography.Body>{value}</Typography.Body>
+            </div>
+          </Fragment>
+        ) : (
+          <Fragment key={`authors-statistics-skeleton-${label}`}>
+            <Skeleton className="col-span-2 mb-[3px] h-[15px] w-full" />
+            <Skeleton className="col-span-1 mb-[3px] h-[15px] w-full" />
+          </Fragment>
+        ),
+      )}
+    </div>
+  );
+};

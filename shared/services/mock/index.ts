@@ -41,10 +41,10 @@ export namespace MockService {
   };
 
   /**
-   * GET /statistics-info
+   * GET /info-stats
    */
   export const getStatistics = async () => {
-    const response = await serviceUrl.get<{ data: Statistics }>("/statistics-info");
+    const response = await serviceUrl.get<{ data: Statistics }>("/info-stats");
     return response.data;
   };
 }
