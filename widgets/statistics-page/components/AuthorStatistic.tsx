@@ -1,7 +1,10 @@
-import { FC, Fragment, useMemo } from "react";
+"use client";
+
+import { FC, useMemo } from "react";
 import { Typography } from "@/shared/ui/Typography";
 import { Skeleton } from "@/shared/ui/Skeleton";
 import { useTranslations } from "next-intl";
+import { AnimatePresence, motion } from "motion/react";
 
 type AuthorStatisticProps = {
   data: {
@@ -24,26 +27,34 @@ export const AuthorStatistic: FC<AuthorStatisticProps> = ({ data }) => {
   );
 
   return (
-    <div className="grid grid-cols-3 items-start">
-      {items.map(({ label, value }) =>
-        value ? (
-          <Fragment key={`${label}-label`}>
-            <div className="col-span-2">
-              <div className="gap-micro flex items-center justify-start">
-                <Typography.Body>{label}</Typography.Body>
+    <div className="flex flex-col items-start">
+      <AnimatePresence>
+        {items.map(({ label, value }) =>
+          value ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="grid w-full grid-cols-3"
+              key={`${label}-label`}
+            >
+              <div className="col-span-2">
+                <div className="gap-micro flex items-center justify-start">
+                  <Typography.Body>{label}</Typography.Body>
+                </div>
               </div>
+              <div className="col-span-1">
+                <Typography.Body>{value}</Typography.Body>
+              </div>
+            </motion.div>
+          ) : (
+            <div className="grid w-full grid-cols-3" key={`authors-statistics-skeleton-${label}`}>
+              <Skeleton className="col-span-2 mb-[3px] h-[15px] w-full" />
+              <Skeleton className="col-span-1 mb-[3px] h-[15px] w-full" />
             </div>
-            <div className="col-span-1">
-              <Typography.Body>{value}</Typography.Body>
-            </div>
-          </Fragment>
-        ) : (
-          <Fragment key={`authors-statistics-skeleton-${label}`}>
-            <Skeleton className="col-span-2 mb-[3px] h-[15px] w-full" />
-            <Skeleton className="col-span-1 mb-[3px] h-[15px] w-full" />
-          </Fragment>
-        ),
-      )}
+          ),
+        )}
+      </AnimatePresence>
     </div>
   );
 };
