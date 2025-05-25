@@ -203,7 +203,7 @@ const MultipleSelect = <T extends object>({
                 <Button
                   ref={triggerButtonRef}
                   aria-label="Chevron"
-                  className="text-muted-fg ml-auto inline-flex items-center justify-center rounded-lg outline-hidden"
+                  className="text-muted-fg ml-auto inline-flex cursor-pointer items-center justify-center rounded-lg outline-hidden"
                 >
                   <IconChevronLgDown
                     className={cn("size-4 transition group-has-open:-rotate-180")}

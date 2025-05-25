@@ -46,6 +46,7 @@
   --color-ring: var(--primary-300);
   --badge-primary-fg: var(--primary-300);
   --color-primary: var(--primary-300);
+  --tw-shadow-color:var(--black);
 
   /* radius */
   --radius-micro: 4px;

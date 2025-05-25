@@ -4,20 +4,24 @@ import { MockService } from "@/shared/services/mock";
 import { Disclosure } from "@/shared/ui/Disclosure";
 import { MultipleSelect } from "@/shared/ui/intent/ui/multiple-select";
 import { Checkbox } from "@/shared/ui/Chekbox";
-import { useQuery } from "@tanstack/react-query";
 import { FC, useState } from "react";
 import { Typography } from "@/shared/ui/Typography";
 import { capitalize } from "@/shared/utils/capitalize";
 import { useTranslations } from "next-intl";
+import { useCustomQuery } from "@/shared/hooks/use-query";
+import toast from "react-hot-toast";
 
 const MULTIPLE_SELECT_THRESHOLD = 4;
 
 export const MorphologicFilters: FC = () => {
   const t = useTranslations("Filters.morphologic");
 
-  const { data: filtersData, isLoading } = useQuery({
+  const { data: filtersData, isLoading } = useCustomQuery({
     queryKey: ["GET /morphologic-filters"],
     queryFn: MockService.getMorphologicFilters,
+    onError: () => {
+      toast.error(t("morph-filters-error"));
+    },
   });
 
   const [selectedValues, setSelectedValues] = useState<Record<string, Set<string>>>({});

@@ -55,17 +55,19 @@
       "vyberite-avtora": "Выберите автора",
       "vyberite-operu": "Выберите оперу",
       "opery": "Оперы",
-      "avtor": "Автор"
+      "avtor": "Автор",
+      "authors-error": "Не получилось получить список авторов. Попробуйте позже",
+      "books-error": "Не получилось получить список книг. Попробуйте позже"
     },
     "morphologic": {
-      "morfologicheskie-filtry": "Морфологические фильтры"
+      "morfologicheskie-filtry": "Морфологические фильтры",
+      "morph-filters-error": "Не получилось получить список морфологических фильтров"
     }
   },
   "SearchResults": {
     "search-results": "Найдено {count, plural, one {# совпадение} few {# совпадения} many {# совпадений} other {# совпадения}}"
   },
   "MorphModalContent": {
-
     "morfologicheskii-analiz": "Морфологический анализ",
     "word-info": "Подробная морфологическая информация по выбранному слову.",
     "notes": "Примечания:"

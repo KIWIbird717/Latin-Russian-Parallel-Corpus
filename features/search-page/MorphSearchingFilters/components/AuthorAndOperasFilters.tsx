@@ -1,23 +1,30 @@
 "use client";
 
+import { useCustomQuery } from "@/shared/hooks/use-query";
 import { MockService } from "@/shared/services/mock";
 import { Disclosure } from "@/shared/ui/Disclosure";
 import { ComboBox } from "@/shared/ui/intent/ui/combo-box";
-import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { FC } from "react";
+import { toast } from "react-hot-toast";
 
 export const AuthorAndOperasFilters: FC = () => {
   const t = useTranslations("Filters.author-and-operas");
 
-  const { data: authorsData, isLoading: isAuthorsLoading } = useQuery({
+  const { data: authorsData, isLoading: isAuthorsLoading } = useCustomQuery({
     queryKey: ["GET /authors"],
     queryFn: MockService.getAuthors,
+    onError: () => {
+      toast.error(t("authors-error"));
+    },
   });
 
-  const { data: workData, isLoading: isWorkLoading } = useQuery({
+  const { data: workData, isLoading: isWorkLoading } = useCustomQuery({
     queryKey: ["GET /book-works"],
     queryFn: MockService.getBookWorks,
+    onError: () => {
+      toast.error(t("books-error"));
+    },
   });
 
   return (

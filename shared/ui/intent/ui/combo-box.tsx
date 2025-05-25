@@ -102,7 +102,7 @@ const ComboBoxInput = (props: InputProps) => {
       <Button
         size="square-petite"
         intent="plain"
-        className="pressed:bg-transparent **:data-[slot=icon]:pressed:text-fg **:data-[slot=icon]:text-muted-fg **:data-[slot=icon]:hover:text-fg h-7 w-8 rounded outline-offset-0 hover:bg-transparent active:bg-transparent"
+        className="pressed:bg-transparent **:data-[slot=icon]:pressed:text-fg **:data-[slot=icon]:text-muted-fg **:data-[slot=icon]:hover:text-fg h-7 w-8 cursor-pointer rounded outline-offset-0 hover:bg-transparent active:bg-transparent"
       >
         {!context?.inputValue && (
           <IconChevronLgDown className="group-open:text-fg size-4 shrink-0 transition duration-200 group-open:rotate-180" />
