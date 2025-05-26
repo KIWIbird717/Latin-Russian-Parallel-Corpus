@@ -9,7 +9,7 @@ import {
   GenusVerbi,
   Persona,
   MorphologicFilters,
-} from "@/shared/lib/msw/handlers/types";
+} from "@/shared/types/mock";
 import { NextResponse } from "next/server";
 
 export async function GET() {

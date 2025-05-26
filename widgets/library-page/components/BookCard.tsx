@@ -1,6 +1,6 @@
 "use client";
 
-import { Author, BookWithoutPages, Translation } from "@/shared/lib/msw/handlers/types";
+import { Author, BookWithoutPages, Translation } from "@/shared/types/mock";
 import { Card } from "@/shared/ui/Card";
 import { Typography } from "@/shared/ui/Typography";
 import { FC } from "react";

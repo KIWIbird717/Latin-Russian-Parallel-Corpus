@@ -1,4 +1,4 @@
-import { BookWork } from "@/shared/lib/msw/handlers/types";
+import { BookWork } from "@/shared/types/mock";
 import { faker } from "@faker-js/faker";
 import { NextResponse } from "next/server";
 import { capitalize } from "@/shared/utils/capitalize";

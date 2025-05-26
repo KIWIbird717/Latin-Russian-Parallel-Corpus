@@ -1,4 +1,4 @@
-import { Word } from "@/shared/lib/msw/handlers/types";
+import { Word } from "@/shared/types/mock";
 import { Card } from "@/shared/ui/Card";
 import { ComponentProps, FC } from "react";
 import { Typography } from "@/shared/ui/Typography";

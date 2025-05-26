@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 import SearchSvg from "@/public/svg/search.svg";
 import { useMutation } from "@tanstack/react-query";
 import { MockService } from "@/shared/services/mock";
-import { CorpusSearchTextResult } from "@/shared/lib/msw/handlers/types";
+import { CorpusSearchTextResult } from "@/shared/types/mock";
 import toast from "react-hot-toast";
 
 type MorphSearchingFiltersProps = {

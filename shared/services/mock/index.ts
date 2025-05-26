@@ -8,7 +8,7 @@ import {
   FilterType,
   BookWithoutPages,
   Book,
-} from "@/shared/lib/msw/handlers/types";
+} from "@/shared/types/mock";
 
 export namespace MockService {
   /**

@@ -1,6 +1,6 @@
 "use client";
 
-import { CorpusSearchTextResult } from "@/shared/lib/msw/handlers/types";
+import { CorpusSearchTextResult } from "@/shared/types/mock";
 import { cn } from "@/shared/lib/utils";
 import { Card } from "@/shared/ui/Card";
 import { FC } from "react";

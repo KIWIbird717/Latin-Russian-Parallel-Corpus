@@ -1,6 +1,6 @@
 "use client";
 
-import { FilterType } from "@/shared/lib/msw/handlers/types";
+import { FilterType } from "@/shared/types/mock";
 import { Search } from "@/shared/ui/Search";
 import { Tabs, TabsProps } from "@/shared/ui/Tabs";
 import { ChangeEventHandler, FC } from "react";

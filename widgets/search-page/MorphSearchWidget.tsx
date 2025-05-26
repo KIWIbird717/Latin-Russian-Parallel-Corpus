@@ -2,7 +2,7 @@
 
 import { MorphReader } from "@/features/search-page/MorphReader";
 import { MorphSearchingFilters } from "@/features/search-page/MorphSearchingFilters";
-import { CorpusSearchTextResult } from "@/shared/lib/msw/handlers/types";
+import { CorpusSearchTextResult } from "@/shared/types/mock";
 import { FC, useState } from "react";
 
 export const MorphSearchWidget: FC = () => {

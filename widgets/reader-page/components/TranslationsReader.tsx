@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Card } from "@/shared/ui/Card";
-import { Translation } from "@/shared/lib/msw/handlers/types";
+import { Translation } from "@/shared/types/mock";
 import { motion } from "motion/react";
 import { AnimatePresence } from "motion/react";
 import { cn } from "@/shared/utils/cn";

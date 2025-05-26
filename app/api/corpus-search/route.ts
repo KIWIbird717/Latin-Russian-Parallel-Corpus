@@ -1,4 +1,4 @@
-import { CorpusSearchTextResult, Word, ParsOrationis } from "@/shared/lib/msw/handlers/types";
+import { CorpusSearchTextResult, Word, ParsOrationis } from "@/shared/types/mock";
 import { faker } from "@faker-js/faker";
 import { NextResponse } from "next/server";
 import { sleep } from "@/shared/utils/sleep";

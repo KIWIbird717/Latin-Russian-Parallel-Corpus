@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Typography } from "@/shared/ui/Typography";
 import { TokensReader } from "@/entities/common/TokensReader";
 import { capitalize } from "@/shared/utils/capitalize";
-import { Translation } from "@/shared/lib/msw/handlers/types";
+import { Translation } from "@/shared/types/mock";
 
 type LocaleReaderProps = { translation: Translation; page: number };
 

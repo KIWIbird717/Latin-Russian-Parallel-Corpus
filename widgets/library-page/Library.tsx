@@ -1,7 +1,7 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { FilterType, BookWithoutPages } from "@/shared/lib/msw/handlers/types";
+import { FilterType, BookWithoutPages } from "@/shared/types/mock";
 import { MockService } from "@/shared/services/mock";
 import { TabType } from "@/shared/ui/Tabs";
 import { FC, useState } from "react";

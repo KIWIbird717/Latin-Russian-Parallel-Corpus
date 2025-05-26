@@ -1,4 +1,4 @@
-import { Statistics } from "@/shared/lib/msw/handlers/types";
+import { Statistics } from "@/shared/types/mock";
 import { sleep } from "@/shared/utils/sleep";
 import { faker } from "@faker-js/faker";
 import { NextResponse } from "next/server";

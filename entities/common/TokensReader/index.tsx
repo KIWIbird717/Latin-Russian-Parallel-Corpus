@@ -1,4 +1,4 @@
-import { CorpusSearchTextResult, Word } from "@/shared/lib/msw/handlers/types";
+import { CorpusSearchTextResult, Word } from "@/shared/types/mock";
 import { Card } from "@/shared/ui/Card";
 import { FC, useState, useMemo, useCallback } from "react";
 import { Modal } from "@/shared/ui/Modal";

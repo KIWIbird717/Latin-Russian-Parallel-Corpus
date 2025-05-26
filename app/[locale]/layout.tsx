@@ -5,7 +5,6 @@ import { cn } from "@/shared/utils/cn";
 import { NextIntlClientProvider } from "next-intl";
 import { Navbar } from "@/widgets/common/Navbar";
 import { Footer } from "@/widgets/common/Footer";
-import { MSWMocksProvider } from "@/shared/providers/MSWMocksProvider";
 import { TanstackProvider } from "@/shared/providers/TanstackProvider";
 import { ToasterProvider } from "@/shared/providers/ToasterProvider";
 import { FaviconsProvider } from "@/shared/providers/FaviconsProvider";
@@ -67,10 +66,8 @@ export default function RootLayout({
         <body className={cn("antialiased", charisSIL.variable, inter.variable)}>
           <Navbar />
           <TanstackProvider>
-            <MSWMocksProvider>
-              <ToasterProvider />
-              {children}
-            </MSWMocksProvider>
+            <ToasterProvider />
+            {children}
           </TanstackProvider>
           <Footer />
         </body>

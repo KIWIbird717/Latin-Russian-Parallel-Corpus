@@ -1,4 +1,4 @@
-import { Author } from "@/shared/lib/msw/handlers/types";
+import { Author } from "@/shared/types/mock";
 import { faker } from "@faker-js/faker";
 import { NextResponse } from "next/server";
 
