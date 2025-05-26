@@ -2,7 +2,7 @@ import { Logo } from "@/entities/common/Logo";
 import { Typography } from "@/shared/ui/Typography";
 import { useTranslations } from "next-intl";
 import { FC, useMemo } from "react";
-import MainSvg from "@/public/svg/mail.svg";
+import MailSvg from "@/public/svg/mail.svg";
 import TelegramSvg from "@/public/svg/telegram.svg";
 import PinSvg from "@/public/svg/map-pin.svg";
 
@@ -20,9 +20,9 @@ export const Information: FC = () => {
 const IconLinks: FC = () => {
   const iconLinks = useMemo(
     () => [
-      { id: 1, icon: <MainSvg />, href: "" },
-      { id: 2, icon: <TelegramSvg />, href: "" },
-      { id: 3, icon: <PinSvg />, href: "" },
+      { id: 1, icon: <MailSvg />, href: "mailto:iliran@mail.ru" },
+      { id: 2, icon: <TelegramSvg />, href: "mailto:iliran@mail.ru" },
+      { id: 3, icon: <PinSvg />, href: "https://yandex.ru/maps/-/CHCSrT~K" },
     ],
     [],
   );
