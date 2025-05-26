@@ -37,7 +37,7 @@ export const BookReader: FC<BookReaderProps> = (props) => {
   return (
     <section className="gap-xl animate-fade-in flex flex-col">
       <Title
-        onToggle={(isToggled) => setView(isToggled ? View.HORIZONTAL : View.VERTICAL)}
+        onToggle={(isToggled) => setView(isToggled ? View.VERTICAL : View.HORIZONTAL)}
         title={data?.book.title}
         description={data?.book.title}
       />
