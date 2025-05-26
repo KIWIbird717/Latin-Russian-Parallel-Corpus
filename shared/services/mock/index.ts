@@ -5,6 +5,8 @@ import {
   MorphologicFilters,
   CorpusSearchTextResult,
   Statistics,
+  Book,
+  FilterType,
 } from "@/shared/lib/msw/handlers/types";
 
 export namespace MockService {
@@ -45,6 +47,30 @@ export namespace MockService {
    */
   export const getStatistics = async () => {
     const response = await serviceUrl.get<{ data: Statistics }>("/info-stats");
+    return response.data;
+  };
+
+  /**
+   * GET /books
+   */
+  export const getBooks = async (params?: {
+    page?: number;
+    limit?: number;
+    search?: string;
+    authorId?: string;
+    startDate?: string;
+    endDate?: string;
+    filterType?: FilterType;
+  }) => {
+    const response = await serviceUrl.get<{
+      books: Book[];
+      pagination: {
+        total: number;
+        page: number;
+        limit: number;
+        totalPages: number;
+      };
+    }>("/books", { params });
     return response.data;
   };
 }

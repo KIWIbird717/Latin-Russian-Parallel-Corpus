@@ -15,6 +15,9 @@ import {
   Word,
   CorpusSearchTextResult,
   Statistics,
+  Book,
+  TranslationLocale,
+  FilterType,
 } from "./types";
 import { faker } from "@faker-js/faker";
 import { capitalize } from "@/shared/utils/capitalize";
@@ -149,6 +152,57 @@ const generateWord = (isSearchWord: boolean = false): Word | string => {
   };
 };
 
+const generateParagraph = (): (Word | string)[] => {
+  const wordsCount = faker.number.int({ min: 30, max: 50 });
+  return Array.from({ length: wordsCount }).map(() => generateWord());
+};
+
+const generateTranslation = () => ({
+  id: faker.string.uuid(),
+  title: capitalize(faker.lorem.words(3)),
+  description: faker.lorem.paragraph(),
+  locale: faker.helpers.arrayElement([TranslationLocale.GREEK, TranslationLocale.RUSSIAN]),
+  date: faker.date.past(),
+  pages: Array.from({ length: faker.number.int({ min: 5, max: 10 }) }).map(() =>
+    generateParagraph(),
+  ),
+});
+
+const generateBook = (): Book => {
+  const author = {
+    id: faker.string.uuid(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    dateOfBirth: faker.date.birthdate(),
+  };
+
+  const latinTranslation = {
+    id: faker.string.uuid(),
+    title: capitalize(faker.lorem.words(3)),
+    description: faker.lorem.paragraph(),
+    locale: TranslationLocale.LATIN,
+    date: faker.date.past(),
+    pages: Array.from({ length: faker.number.int({ min: 5, max: 10 }) }).map(() =>
+      generateParagraph(),
+    ),
+  };
+
+  return {
+    id: faker.string.uuid(),
+    author,
+    title: capitalize(faker.lorem.words(3)),
+    date: faker.date.past(),
+    translations: [
+      latinTranslation,
+      ...Array.from({ length: faker.number.int({ min: 1, max: 2 }) }).map(() =>
+        generateTranslation(),
+      ),
+    ],
+  };
+};
+
+const BOOKS: Book[] = Array.from({ length: 100 }).map(() => generateBook());
+
 export const handlers = [
   http.get("/authors", () => {
     const authors: Author[] = Array.from({ length: 100 }).map(() => ({
@@ -238,5 +292,58 @@ export const handlers = [
       },
     };
     return HttpResponse.json({ data: data });
+  }),
+
+  http.get("/books", async ({ request }) => {
+    const url = new URL(request.url);
+    const page = Number(url.searchParams.get("page")) || 1;
+    const limit = Number(url.searchParams.get("limit")) || 10;
+    const search = url.searchParams.get("search") || "";
+    const authorId = url.searchParams.get("authorId");
+    const startDate = url.searchParams.get("startDate");
+    const endDate = url.searchParams.get("endDate");
+    const filterType = (url.searchParams.get("filterType") as FilterType) || FilterType.TITLE;
+
+    await sleep(1000);
+
+    let filteredBooks = [...BOOKS];
+
+    if (search) {
+      filteredBooks = filteredBooks.filter((book) =>
+        book.title.toLowerCase().includes(search.toLowerCase()),
+      );
+    }
+
+    if (filterType === FilterType.AUTHOR && authorId) {
+      filteredBooks = filteredBooks.filter((book) => book.author.id === authorId);
+      filteredBooks.sort((a, b) =>
+        `${a.author.lastName} ${a.author.firstName}`.localeCompare(
+          `${b.author.lastName} ${b.author.firstName}`,
+        ),
+      );
+    } else if (filterType === FilterType.TITLE) {
+      filteredBooks.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (filterType === FilterType.DATE && startDate && endDate) {
+      filteredBooks = filteredBooks.filter(
+        (book) =>
+          new Date(book.date) >= new Date(startDate) && new Date(book.date) <= new Date(endDate),
+      );
+      filteredBooks.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    }
+
+    const total = filteredBooks.length;
+    const start = (page - 1) * limit;
+    const end = start + limit;
+    const paginatedBooks = filteredBooks.slice(start, end);
+
+    return HttpResponse.json({
+      books: paginatedBooks,
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+    });
   }),
 ];

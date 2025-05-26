@@ -141,3 +141,34 @@ export type Statistics = {
     total: number;
   };
 };
+
+export type Paragraph = (string | Word)[];
+
+export enum TranslationLocale {
+  GREEK = "GREEK",
+  LATIN = "LATIN",
+  RUSSIAN = "RUSSIAN",
+}
+
+export type Translation = {
+  id: string;
+  title: string;
+  description: string;
+  locale: TranslationLocale;
+  date: Date;
+  pages: Paragraph[];
+};
+
+export type Book = {
+  id: string;
+  author: Author;
+  title: string;
+  date: Date;
+  translations: Translation[];
+};
+
+export enum FilterType {
+  AUTHOR = "author",
+  TITLE = "title",
+  DATE = "date",
+}

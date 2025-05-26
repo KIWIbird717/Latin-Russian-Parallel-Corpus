@@ -8,7 +8,7 @@ export const Page: FC<PageProps> = ({ children, className, ...props }) => {
     <Layout
       {...props}
       className={cn(
-        "pb-lg gap-lg animate-fade-in mt-[64px] flex min-h-[calc(100vh-120px)] flex-col",
+        "pb-lg gap-lg animate-fade-in mt-[42px] flex min-h-[calc(100vh-120px)] flex-col",
         className,
       )}
     >
