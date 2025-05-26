@@ -1,3 +1,5 @@
 import axios from "axios";
 
-export const serviceUrl = axios.create({});
+export const serviceUrl = axios.create({
+  baseURL: "/api",
+});
