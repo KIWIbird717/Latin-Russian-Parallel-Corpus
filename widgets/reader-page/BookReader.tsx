@@ -3,7 +3,7 @@
 import { MockService } from "@/shared/services/mock";
 import { Typography } from "@/shared/ui/Typography";
 import { useQuery } from "@tanstack/react-query";
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { Dispatch, FC, ReactNode, SetStateAction, useState } from "react";
 import { useRouter } from "@/shared/i18n/navigation";
 import { Button } from "@/shared/ui/Button";
 import { Skeleton } from "@/shared/ui/Skeleton";
@@ -12,11 +12,20 @@ import { Translation } from "@/shared/lib/msw/handlers/types";
 import { TokensReader } from "@/entities/common/TokensReader";
 import { capitalize } from "@/shared/utils/capitalize";
 import ChevronSvg from "@/public/svg/chevron.svg";
+import BookOpenSvg from "@/public/svg/book-open.svg";
+import { AnimatePresence, motion } from "motion/react";
+import { cn } from "@/shared/utils/cn";
+
+enum View {
+  VERTICAL = "VERTICAL",
+  HORIZONTAL = "HORIZONTAL",
+}
 
 type BookReaderProps = {
   bookId: string;
 };
 export const BookReader: FC<BookReaderProps> = (props) => {
+  const [view, setView] = useState(View.HORIZONTAL);
   const { data, isLoading } = useQuery({
     queryKey: ["GET /books/:id", props.bookId],
     queryFn: () => MockService.getBookById(props.bookId),
@@ -37,29 +46,39 @@ export const BookReader: FC<BookReaderProps> = (props) => {
 
   return (
     <section className="gap-xl animate-fade-in flex flex-col">
-      <Title title={data?.book.title} description={data?.book.title} />
-      <TranslationsReader translations={data.book.translations} />
+      <Title
+        onToggle={(isToggled) => setView(isToggled ? View.VERTICAL : View.HORIZONTAL)}
+        title={data?.book.title}
+        description={data?.book.title}
+      />
+      <TranslationsReader view={view} translations={data.book.translations} />
     </section>
   );
 };
 
-type TranslationsReaderProps = { translations: Translation[] };
+const MotionCard = motion.create(Card);
+type TranslationsReaderProps = { translations: Translation[]; view: View };
 const TranslationsReader: FC<TranslationsReaderProps> = (props) => {
   const [page, setPage] = useState(0);
 
   return (
-    <>
-      <Card className="gap-md animate-fade-in flex flex-row">
-        {props.translations.map((translation) => (
-          <LocaleReader
-            page={page}
-            key={`tokens-reader-${translation.id}`}
-            translation={translation}
-          />
-        ))}
-      </Card>
+    <motion.div layout className="gap-md animate-fade-in flex flex-col">
+      <MotionCard
+        layout
+        className={cn("gap-md flex", props.view === View.VERTICAL ? "flex-col" : "flex-row")}
+      >
+        <AnimatePresence mode="wait">
+          {props.translations.map((translation) => (
+            <LocaleReader
+              page={page}
+              key={`tokens-reader-${translation.id}-${props.view}`}
+              translation={translation}
+            />
+          ))}
+        </AnimatePresence>
+      </MotionCard>
       <Pagination page={page} setPage={setPage} totalPages={props.translations[0].pages.length} />
-    </>
+    </motion.div>
   );
 };
 
@@ -81,7 +100,7 @@ const Pagination: FC<PaginationProps> = (props) => {
   };
 
   return (
-    <div className="gap-md animate-fade-in flex w-full items-center justify-center">
+    <div className="gap-md flex w-full items-center justify-center">
       <Button variant="secondary" onClick={prevPage} disabled={!hasPrevPage}>
         <ChevronSvg className="-rotate-90" /> Предыдущий
       </Button>
@@ -110,6 +129,7 @@ const LocaleReader: FC<LocaleReaderProps> = (props) => {
 type TitleProps = {
   title: string;
   description: string;
+  onToggle: ToggleProps["onChange"];
 };
 const Title: FC<TitleProps> = (props) => {
   return (
@@ -119,8 +139,56 @@ const Title: FC<TitleProps> = (props) => {
         <Typography.Small className="text-text-200">{props.description}</Typography.Small>
       </div>
 
-      <div className="gap-sm flex items-center"></div>
+      <div className="gap-sm flex items-center">
+        <Toggle
+          onChange={props.onToggle}
+          toggledState={<BookOpenSvg className="fill-text-500 scale-110" />}
+          untoggledState={<BookOpenSvg className="scale-110" />}
+        />
+      </div>
     </div>
+  );
+};
+
+type ToggleProps = {
+  toggledState: ReactNode;
+  untoggledState: ReactNode;
+  onChange?: (isToggled: boolean) => void;
+};
+const Toggle: FC<ToggleProps> = (props) => {
+  const [isToggled, setIsToggled] = useState(false);
+
+  const handleCLick = () => {
+    setIsToggled((state) => {
+      props.onChange?.(!state);
+      return !state;
+    });
+  };
+
+  return (
+    <Button variant="secondary" className="relative aspect-square" onClick={handleCLick}>
+      <AnimatePresence>
+        {isToggled ? (
+          <motion.div
+            className="absolute"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {props.toggledState}
+          </motion.div>
+        ) : (
+          <motion.div
+            className="absolute"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {props.untoggledState}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </Button>
   );
 };
 
