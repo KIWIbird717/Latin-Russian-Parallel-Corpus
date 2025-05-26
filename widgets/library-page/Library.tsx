@@ -1,50 +1,104 @@
 "use client";
 
 import { useCustomQuery } from "@/shared/hooks/use-query";
-import { FilterType, Translation } from "@/shared/lib/msw/handlers/types";
+import { Author, BookWithoutPages, FilterType, Translation } from "@/shared/lib/msw/handlers/types";
 import { MockService } from "@/shared/services/mock";
 import { Card } from "@/shared/ui/Card";
 import { Search } from "@/shared/ui/Search";
-import { Tabs } from "@/shared/ui/Tabs";
+import { Tabs, TabsProps, TabType } from "@/shared/ui/Tabs";
 import { Typography } from "@/shared/ui/Typography";
-import { FC } from "react";
+import { ChangeEventHandler, FC, useState } from "react";
 import BookTranslationSvg from "@/public/svg/book-translation.svg";
 import { Badge } from "@/shared/ui/Badge";
 import { capitalize } from "@/shared/utils/capitalize";
 import BookOpen from "@/public/svg/book-open.svg";
 import { ButtonLink } from "@/shared/ui/ButtonLink";
 import { Loader } from "@/shared/ui/Loader";
+import debounce from "lodash.debounce";
+import { AnimatePresence, motion } from "motion/react";
+import { cn } from "@/shared/utils/cn";
 
 export const Library: FC = () => {
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState(FilterType.AUTHOR);
+
   const { data, isLoading } = useCustomQuery({
-    queryKey: [],
-    queryFn: () => MockService.getBooks(),
+    queryKey: ["GET /books", search, filter],
+    queryFn: () =>
+      MockService.getBooks({
+        filterType: filter,
+        search,
+      }),
   });
+
+  const handleSearchChange = debounce((value: string) => {
+    setSearch(value);
+  }, 300);
+
+  const handleFiltersChange = (tab: TabType<FilterType>) => {
+    if (!tab.data) return;
+    setFilter(tab.data);
+  };
 
   return (
     <>
-      <LibraryFilters />
-      <div className="gap-md flex flex-col">
-        {isLoading ? (
-          <Loader size="large" />
-        ) : (
-          data?.books?.map((book) => (
-            <BookCard key={`book-${book.id}`} title={book.title} translations={book.translations} />
-          ))
-        )}
+      <LibraryFilters
+        onSearchChange={(event) => handleSearchChange(event.target.value)}
+        onTabChange={handleFiltersChange}
+        isLoading={isLoading}
+      />
+      <div className="gap-md relative flex flex-col">
+        <AnimatePresence>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            data?.books?.map((book) => (
+              <BookCard
+                key={`book-${book.id}`}
+                title={book.title}
+                translations={book.translations}
+                author={book.author}
+              />
+            ))
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
 };
 
-const LibraryFilters: FC = () => {
+const Loading: FC = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="absolute flex min-h-[500px] w-full items-center justify-center"
+    >
+      <Loader size="large" />
+    </motion.div>
+  );
+};
+
+type LibraryFiltersProps = {
+  onSearchChange?: ChangeEventHandler<HTMLInputElement>;
+  onTabChange?: TabsProps<FilterType>["onChange"];
+  isLoading?: boolean;
+};
+const LibraryFilters: FC<LibraryFiltersProps> = (props) => {
   return (
     <section className="gap-xl flex items-center">
-      <Search label="Поиск книги" placeholder="Название книги" className="w-[250px]" />
+      <Search
+        onChange={props.onSearchChange}
+        label="Поиск книги"
+        placeholder="Название книги"
+        className="w-[350px]"
+      />
       <Tabs
         id="LibraryFilters"
         label="Сортировка"
-        className="max-w-[473px]"
+        className={cn("max-w-[473px]", props.isLoading && "pointer-events-none opacity-50")}
+        onChange={props.onTabChange}
         tabs={[
           { id: 1, label: "По автору", data: FilterType.AUTHOR },
           { id: 2, label: "По книге", data: FilterType.TITLE },
@@ -55,14 +109,26 @@ const LibraryFilters: FC = () => {
   );
 };
 
+const MotionCard = motion.create(Card);
 type BookCardProps = {
   title: string;
-  translations: Translation[];
+  author: Author;
+  translations: BookWithoutPages["translations"];
 };
 const BookCard: FC<BookCardProps> = (props) => {
   return (
-    <Card className="bg-background-200">
-      <Typography.Heading4>{props.title}</Typography.Heading4>
+    <MotionCard
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="bg-background-200"
+    >
+      <div className="gap-micro flex flex-col">
+        <Typography.Heading4>{props.title}</Typography.Heading4>
+        <Typography.Small className="text-text-200">
+          Автор: {props.author.firstName} {props.author.lastName}
+        </Typography.Small>
+      </div>
       <div className="gap-sm flex flex-col">
         {props.translations.map((translation) => (
           <BookTranslationCard
@@ -71,11 +137,11 @@ const BookCard: FC<BookCardProps> = (props) => {
           />
         ))}
       </div>
-    </Card>
+    </MotionCard>
   );
 };
 
-type BookTranslationCardProps = { translation: Translation };
+type BookTranslationCardProps = { translation: Omit<Translation, "pages"> };
 const BookTranslationCard: FC<BookTranslationCardProps> = (props) => {
   return (
     <Card className="bg-background-100 flex flex-row justify-between">

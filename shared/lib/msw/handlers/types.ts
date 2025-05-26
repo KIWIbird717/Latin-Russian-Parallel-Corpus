@@ -167,6 +167,10 @@ export type Book = {
   translations: Translation[];
 };
 
+export type BookWithoutPages = Omit<Book, "translations"> & {
+  translations: Omit<Translation, "pages">[];
+};
+
 export enum FilterType {
   AUTHOR = "author",
   TITLE = "title",

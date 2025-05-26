@@ -299,7 +299,6 @@ export const handlers = [
     const page = Number(url.searchParams.get("page")) || 1;
     const limit = Number(url.searchParams.get("limit")) || 10;
     const search = url.searchParams.get("search") || "";
-    const authorId = url.searchParams.get("authorId");
     const startDate = url.searchParams.get("startDate");
     const endDate = url.searchParams.get("endDate");
     const filterType = (url.searchParams.get("filterType") as FilterType) || FilterType.TITLE;
@@ -314,11 +313,10 @@ export const handlers = [
       );
     }
 
-    if (filterType === FilterType.AUTHOR && authorId) {
-      filteredBooks = filteredBooks.filter((book) => book.author.id === authorId);
+    if (filterType === FilterType.AUTHOR) {
       filteredBooks.sort((a, b) =>
-        `${a.author.lastName} ${a.author.firstName}`.localeCompare(
-          `${b.author.lastName} ${b.author.firstName}`,
+        `${a.author.firstName} ${a.author.lastName}`.localeCompare(
+          `${b.author.firstName} ${b.author.lastName}`,
         ),
       );
     } else if (filterType === FilterType.TITLE) {
@@ -337,7 +335,13 @@ export const handlers = [
     const paginatedBooks = filteredBooks.slice(start, end);
 
     return HttpResponse.json({
-      books: paginatedBooks,
+      books: paginatedBooks.map((book) => ({
+        ...book,
+        translations: book.translations.map((translation) => ({
+          ...translation,
+          pages: undefined,
+        })),
+      })),
       pagination: {
         total,
         page,

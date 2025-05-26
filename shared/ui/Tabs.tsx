@@ -11,7 +11,7 @@ export type TabType<T> = {
   data?: T;
 };
 
-type TabsProps<T> = {
+export type TabsProps<T> = {
   id: string | number;
   tabs: TabType<T>[];
   onChange?: (tab: TabType<T>) => void;

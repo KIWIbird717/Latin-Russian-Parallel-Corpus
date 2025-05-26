@@ -5,8 +5,8 @@ import {
   MorphologicFilters,
   CorpusSearchTextResult,
   Statistics,
-  Book,
   FilterType,
+  BookWithoutPages,
 } from "@/shared/lib/msw/handlers/types";
 
 export namespace MockService {
@@ -57,13 +57,12 @@ export namespace MockService {
     page?: number;
     limit?: number;
     search?: string;
-    authorId?: string;
     startDate?: string;
     endDate?: string;
     filterType?: FilterType;
   }) => {
     const response = await serviceUrl.get<{
-      books: Book[];
+      books: BookWithoutPages[];
       pagination: {
         total: number;
         page: number;
