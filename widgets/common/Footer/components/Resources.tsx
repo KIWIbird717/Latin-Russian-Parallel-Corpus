@@ -1,4 +1,3 @@
-import { Link } from "@/shared/i18n/navigation";
 import { Typography } from "@/shared/ui/Typography";
 import { useTranslations } from "next-intl";
 import { FC, useMemo } from "react";
