@@ -13,7 +13,9 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   ...compat.config({
     rules: {
-      "@typescript-eslint/no-namespace": 'off'
+      "@typescript-eslint/no-namespace": 'off',
+      // Запрет console, кроме error
+      "no-console": ["warn", { allow: ["error"] }],
     }
   })
 ];

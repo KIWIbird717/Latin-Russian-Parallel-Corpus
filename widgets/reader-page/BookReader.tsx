@@ -19,8 +19,6 @@ export const BookReader: FC<BookReaderProps> = (props) => {
     queryFn: () => MockService.getBookById(props.bookId),
   });
 
-  console.log({ data });
-
   if (isLoading)
     return (
       <section className="gap-xl animate-fade-in flex flex-col">
