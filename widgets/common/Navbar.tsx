@@ -3,7 +3,7 @@ import { FC } from "react";
 import { Link } from "@/shared/i18n/navigation";
 import { Typography } from "@/shared/ui/Typography/index";
 import { Logo } from "@/entities/common/Logo";
-import { useNavigationItems } from "@/shared/hooks/useNavigationItems";
+import { useNavigationItems } from "@/shared/hooks/use-navigation-items";
 
 export const Navbar: FC = () => {
   return (

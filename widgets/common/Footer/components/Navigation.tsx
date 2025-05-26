@@ -1,4 +1,4 @@
-import { useNavigationItems } from "@/shared/hooks/useNavigationItems";
+import { useNavigationItems } from "@/shared/hooks/use-navigation-items";
 import { Link } from "@/shared/i18n/navigation";
 import { Typography } from "@/shared/ui/Typography";
 import { useTranslations } from "next-intl";
