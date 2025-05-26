@@ -1,6 +1,6 @@
 "use client";
 
-import { useCustomQuery } from "@/shared/hooks/use-query";
+import { useCustomQuery } from "@/shared/hooks/use-custom-query";
 import { MockService } from "@/shared/services/mock";
 import { Disclosure } from "@/shared/ui/Disclosure";
 import { ComboBox } from "@/shared/ui/intent/ui/combo-box";

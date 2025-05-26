@@ -8,7 +8,7 @@ import { FC, useCallback, useState } from "react";
 import { Typography } from "@/shared/ui/Typography";
 import { capitalize } from "@/shared/utils/capitalize";
 import { useTranslations } from "next-intl";
-import { useCustomQuery } from "@/shared/hooks/use-query";
+import { useCustomQuery } from "@/shared/hooks/use-custom-query";
 import toast from "react-hot-toast";
 
 /**
