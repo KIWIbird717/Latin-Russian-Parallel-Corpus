@@ -1,0 +1,11 @@
+services:
+  lrc-frontend:
+    container_name: lrc-frontend
+    build: .
+    restart: always #change if you don't want your container restarting test
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./.env
+    ports:
+      - 3000:3000
