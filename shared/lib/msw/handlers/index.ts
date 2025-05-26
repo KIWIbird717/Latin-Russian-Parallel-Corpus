@@ -350,4 +350,17 @@ export const handlers = [
       },
     });
   }),
+
+  http.get("/books/:id", async ({ params }) => {
+    const { id } = params;
+    await sleep(1000);
+
+    const book = BOOKS.find((book) => book.id === id);
+
+    if (!book) {
+      return new HttpResponse(null, { status: 404 });
+    }
+
+    return HttpResponse.json({ book });
+  }),
 ];

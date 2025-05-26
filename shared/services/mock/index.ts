@@ -7,6 +7,7 @@ import {
   Statistics,
   FilterType,
   BookWithoutPages,
+  Book,
 } from "@/shared/lib/msw/handlers/types";
 
 export namespace MockService {
@@ -70,6 +71,14 @@ export namespace MockService {
         totalPages: number;
       };
     }>("/books", { params });
+    return response.data;
+  };
+
+  /**
+   * GET /books/:id
+   */
+  export const getBookById = async (id: string) => {
+    const response = await serviceUrl.get<{ book: Book }>(`/books/${id}`);
     return response.data;
   };
 }
