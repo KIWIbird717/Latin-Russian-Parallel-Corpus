@@ -78,6 +78,7 @@ export const Library: FC = () => {
             >
               {books.map((book) => (
                 <BookCard
+                  bookId={book.id}
                   key={`book-${book.id}`}
                   title={book.title}
                   translations={book.translations}

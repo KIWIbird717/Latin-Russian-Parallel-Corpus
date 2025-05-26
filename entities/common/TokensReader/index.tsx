@@ -8,7 +8,7 @@ import { ReaderSentence } from "./components/ReaderSentence";
 
 type TokensReaderProps = {
   tokens: CorpusSearchTextResult["text"];
-  searchedWord: string;
+  searchedWord?: string;
 };
 
 export const TokensReader: FC<TokensReaderProps> = ({ tokens, searchedWord }) => {

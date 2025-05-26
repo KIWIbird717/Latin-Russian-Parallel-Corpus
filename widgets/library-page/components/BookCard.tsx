@@ -13,6 +13,7 @@ import { IconBookOpen } from "@intentui/icons";
 
 const MotionCard = motion.create(Card);
 type BookCardProps = {
+  bookId: string;
   title: string;
   author: Author;
   translations: BookWithoutPages["translations"];
@@ -36,6 +37,7 @@ export const BookCard: FC<BookCardProps> = (props) => {
           <BookTranslationCard
             key={`book-translation-${translation.id}`}
             translation={translation}
+            bookId={props.bookId}
           />
         ))}
       </div>
@@ -43,7 +45,7 @@ export const BookCard: FC<BookCardProps> = (props) => {
   );
 };
 
-type BookTranslationCardProps = { translation: Omit<Translation, "pages"> };
+type BookTranslationCardProps = { translation: Omit<Translation, "pages">; bookId: string };
 const BookTranslationCard: FC<BookTranslationCardProps> = (props) => {
   return (
     <Card className="bg-background-100 flex flex-row justify-between">
@@ -59,7 +61,7 @@ const BookTranslationCard: FC<BookTranslationCardProps> = (props) => {
           </Typography.Small>
         </div>
       </div>
-      <ButtonLink href={""} variant="secondary" className="h-[30px]">
+      <ButtonLink href={`library/${props.bookId}`} variant="secondary" className="h-[30px]">
         <IconBookOpen />
         Читать
       </ButtonLink>

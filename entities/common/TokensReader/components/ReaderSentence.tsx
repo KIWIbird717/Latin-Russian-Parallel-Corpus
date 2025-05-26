@@ -8,7 +8,7 @@ type ReaderSentenceProps = {
   /**
    * Слово по которому происходил поиск, нужно для хайлайта
    */
-  searchedWord: string;
+  searchedWord?: string;
   onWordClick?: (token: Word) => void;
 };
 export const ReaderSentence: FC<ReaderSentenceProps> = (props) => {
@@ -23,7 +23,7 @@ export const ReaderSentence: FC<ReaderSentenceProps> = (props) => {
           );
         }
 
-        const isSearchedWord = token.value.toLowerCase() === props.searchedWord.toLowerCase();
+        const isSearchedWord = token.value.toLowerCase() === props?.searchedWord?.toLowerCase();
 
         return (
           <div key={token.id} className="group relative inline-block">

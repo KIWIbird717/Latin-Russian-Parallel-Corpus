@@ -4,7 +4,7 @@ import { ComponentProps, FC } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 export const buttonVariants = tv({
-  base: "flex gap-sm rounded-sm justify-center items-center py-[7px] px-[20px] font-inter text-[15px] cursor-pointer transition-all duration-75 active:scale-95 ease-in-out max-w-[600px]",
+  base: "flex gap-sm rounded-sm justify-center items-center py-[7px] px-[20px] font-inter text-[15px] cursor-pointer transition-all duration-75 active:scale-95 ease-in-out max-w-[600px] disabled:opacity-50 disabled:pointer-events-none",
   variants: {
     variant: {
       primary: "bg-primary-300 text-text-100 hover:bg-primary-200",
