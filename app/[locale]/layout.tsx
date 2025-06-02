@@ -18,7 +18,7 @@ if (!domain) {
 export const metadata: Metadata = {
   title: "Latin Russian Parallel Corpus",
   description:
-    "Latin-Russian корпус сделанный под руководством Института Лингвистический Исследований РАН",
+    "Параллельный корпус классических латинских текстов с русскими и греческими переводами, дополненный морфологическим анализом и расширенными возможностями поиска.",
   applicationName: "LRS",
   generator: null,
   creator: "KIWIbird717",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     alternateLocale: ["ru"],
     title: "Latin Russian Corpus",
     description:
-      "Latin-Russian корпус сделанный под руководством Института Лингвистический Исследований РАН",
+      "Параллельный корпус классических латинских текстов с русскими и греческими переводами, дополненный морфологическим анализом и расширенными возможностями поиска.",
     images: `${domain}/preview.png`,
     url: `${domain}/`,
     type: "website",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Latin Russian Corpus",
     description:
-      "Latin-Russian корпус сделанный под руководством Института Лингвистический Исследований РАН",
+      "Параллельный корпус классических латинских текстов с русскими и греческими переводами, дополненный морфологическим анализом и расширенными возможностями поиска.",
     site: "@site",
     creator: "@creator",
     images: `${domain}/preview.png`,
