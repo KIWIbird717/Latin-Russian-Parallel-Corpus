@@ -21,7 +21,7 @@ export const TokensReader: FC<TokensReaderProps> = ({ tokens, searchedWord }) =>
     const result: (Word | string)[][] = [];
     let currentSentence: (Word | string)[] = [];
 
-    tokens.forEach((token) => {
+    tokens?.forEach((token) => {
       if (isEndOfSentence(token)) {
         currentSentence.push(token);
         result.push([...currentSentence]);

@@ -14,14 +14,14 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript", "plugin:react/recommended"),
   ...compat.config({
     rules: {
-      "@typescript-eslint/no-namespace": 'off',
+      "@typescript-eslint/no-namespace": "off",
       "no-console": ["warn", { allow: ["error"] }],
-      "react/react-in-jsx-scope": 'off',
-      'sonarjs/cognitive-complexity': ['error', 5],
-      'react/jsx-max-depth': ['warn', { max: 4 }],
-      'max-lines-per-function': ['warn', { max: 60, skipBlankLines: true, skipComments: true }],
-    }
-  })
+      "react/react-in-jsx-scope": "off",
+      "sonarjs/cognitive-complexity": ["error", 5],
+      "react/jsx-max-depth": ["warn", { max: 4 }],
+      "max-lines-per-function": ["warn", { max: 60, skipBlankLines: true, skipComments: true }],
+    },
+  }),
 ];
 
 export default eslintConfig;
