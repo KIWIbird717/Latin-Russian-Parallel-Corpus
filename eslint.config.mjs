@@ -15,7 +15,6 @@ const eslintConfig = [
   ...compat.config({
     rules: {
       "@typescript-eslint/no-namespace": 'off',
-      // Запрет console, кроме error
       "no-console": ["warn", { allow: ["error"] }],
       "react/react-in-jsx-scope": 'off',
       'sonarjs/cognitive-complexity': ['error', 5],
