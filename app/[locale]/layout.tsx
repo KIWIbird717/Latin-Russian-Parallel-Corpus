@@ -16,7 +16,7 @@ if (!domain) {
 }
 
 export const metadata: Metadata = {
-  title: "Latin Russian Corpus",
+  title: "Latin Russian Parallel Corpus",
   description:
     "Latin-Russian корпус сделанный под руководством Института Лингвистический Исследований РАН",
   applicationName: "LRS",
