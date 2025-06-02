@@ -19,7 +19,8 @@ const eslintConfig = [
       "react/react-in-jsx-scope": "off",
       "sonarjs/cognitive-complexity": ["error", 5],
       "react/jsx-max-depth": ["warn", { max: 4 }],
-      "max-lines-per-function": ["warn", { max: 60, skipBlankLines: true, skipComments: true }],
+      "max-lines-per-function": ["warn", { max: 90, skipBlankLines: true, skipComments: true }],
+      "react/prop-types": "off",
     },
   }),
 ];
