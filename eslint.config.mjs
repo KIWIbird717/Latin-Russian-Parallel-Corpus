@@ -10,12 +10,17 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.plugins("sonarjs"),
+  ...compat.extends("next/core-web-vitals", "next/typescript", "plugin:react/recommended"),
   ...compat.config({
     rules: {
       "@typescript-eslint/no-namespace": 'off',
       // Запрет console, кроме error
       "no-console": ["warn", { allow: ["error"] }],
+      "react/react-in-jsx-scope": 'off',
+      'sonarjs/cognitive-complexity': ['error', 5],
+      'react/jsx-max-depth': ['warn', { max: 4 }],
+      'max-lines-per-function': ['warn', { max: 60, skipBlankLines: true, skipComments: true }],
     }
   })
 ];
